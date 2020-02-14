@@ -117,23 +117,23 @@
 \section{Methods}  % TODO Review Requested
 \fontsize{11pt}{11pt} \selectfont {
   \paragraph{Data Collection}
-  To achieve our goal, making generator which predicts the possible area of ash spread for the given
-  pair of weather maps, we first need to collect input and output data pairs. To collect these, for 
-  the input image, we will download those from the “Meteorological Data Open Portal” operated by the
-  Korea Meteorological Administration (KMA)~\citep{MDOP}. To get the output data that will be paired
-  with the weather maps, we will go through the traditional procedure with either FALL3D, or 
-  Puff-UAF model.
+  To achieve our goal, making a generator which predicts the possible area of ash spread for the 
+  given pair of weather maps, we first need to collect input and output data pairs. To collect 
+  these, for the input image, we will download those from the “Meteorological Data Open Portal” 
+  operated by the Korea Meteorological Administration (KMA)~\citep{MDOP}. To get the output data 
+  that will be paired with the weather maps, we will go through the traditional procedure with 
+  either the FALL3D or the Puff-UAF model.
   
   The simulation parameters except for the weather data – plume height, number of particles to be 
   predicted, and the mountain that has been erupted – will be set manually. To represent various 
-  eruption cases, for each mountain to be used as sample, we will simulate with the constants 
+  eruption cases, for each mountain to be used as the sample, we will simulate with the constants 
   representing Volcanic Explosivity Index (VEI) 3 (Moderate Large Eruption), VEI 5 (Very Large 
   Eruption), and VEI 7 (Massive Explosive Eruption)~\citep[p. 1232]{Newhall1982}. The remaining, but
   the most important, parameter for the simulation model, weather prediction data, will be obtained 
   by the same location where we found the weather maps: download prediction made by RDAPS(regional 
   data assimilation and prediction system)~\citep{MDOP}. These datasets are extremely huge: one day 
   of weather data takes 1.32 GigaBytes, and we are thinking of getting at least 5 years of data for 
-  both training and testing sets. We need to find a reliable storage to save all the weather data, 
+  both training and testing sets. We need to find reliable storage to save all the weather data, 
   weather maps, and output images.
 
   \paragraph{Model structure}
