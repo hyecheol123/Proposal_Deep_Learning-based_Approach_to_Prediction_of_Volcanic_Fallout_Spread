@@ -76,7 +76,7 @@
 \end{abstract}
 
 \begin{doublespacing}
-\section{Introduction}
+\section{Introduction} % TODO Review Requested
 \fontsize{11pt}{11pt} \selectfont {
   The volcanic eruption is one of the most severe natural disasters which occasionally happens.
   However, compares to the other disasters which can be predicted, like typhoons and storms,
@@ -97,38 +97,71 @@
   usually focus on the predicting the pathway of fallout ash dispersion and the amount of deposited 
   ash while accepting limited variables~\citep[p. 276]{Yun_2013}.
 
-  % TODO Oringinality
-  % TODO Research Goal
+  However, these models’ predictability might be limited due to computing 
+  performance~\citep[p. 745-746]{Tanaka2022}. In order to make faster prediction, the fellow 
+  scholars conducted researches on making lighter and faster prediction model~(\citet{Searcy1998}), 
+  standardizing the eruption parameters which requried for running the 
+  model~(\citet[p. 7]{Webley2009}), and figuring out the way to store and retrieve different kinds 
+  of data (satelite and prediction from mathematical model) more efficiently~(\citet{Sorokin2016}).
+  Though the advance of the models' and predict utilizations' efficiency has been improved with the 
+  effort of numerous scholars, still the needs of the calculation process lasts, which yet limiting 
+  the ability of prediction with respect to the computing power.
+
+  In this research, we are going to suggest a faster way to get the prediction on the pathway and 
+  area that might be affected by volcanic fallout ash: Image-to-Image Translation. By utilizing the
+  state-of-the-arts deep neural network, our goal includes verifying whether conditional GAN based 
+  deep neural network is able to extract the relationship between flow of air (represented by 
+  weather maps) and the spread of fallout ash.
 }
 
-\section{Methods} % TODO Citation
+\section{Methods}  % TODO Review Requested
 \fontsize{11pt}{11pt} \selectfont {
   \paragraph{Data Collection}
   To achieve our goal, making generator which predict the possible area of ash spread with respect 
   to the given pair of weather maps, we first need to collect input and output data pairs. In order 
   to collect these, for the input image, we will download those from “Meteorological Data Open 
-  Portal” operated by Korea Meteorological Administration (KMA). To get the output data that will be
-  paired with the weather maps, we will go through the traditional procedure with either FALL3D, or 
-  Puff-UAF model. Those models have their own strengths and shortness, and these will be summarized 
-  on \textbf{Appendix A}.
+  Portal” operated by Korea Meteorological Administration 
+  (KMA)~\citep{MDOP}. To get the output data that will be paired with the weather maps, we will go 
+  through the traditional procedure with either FALL3D, or Puff-UAF model.
   
   The simulation parameters except for the weather data – plume height, number of particles to be 
   predicted, and the mountain that has been erupted) will be set manually. To represent various 
   eruption cases, for each mountain to be used as sample, we will run the simulation with the 
-  constants representing Volcanic Explosivity Index (VEI) 3 (Moderate Eruption), VEI 5 (Large 
-  Eruption), and VEI 7 (Very Large Eruption). The remaining, but the most important, parameter for 
-  the simulation model, weather prediction data, will be obtained by the same location where we 
-  found the weather maps: download prediction made by RDAPS(regional data assimilation and 
-  prediction system). These datasets are extremely huge: one day of weather data takes 1.32 
-  GigaBytes, and we are thinking of getting at least 5 years of data for both training and testing 
-  sets. We need to find a reliable storage to save all the weather data, weather maps, and output 
-  images.
+  constants representing Volcanic Explosivity Index (VEI) 3 (Moderate-Large Eruption), VEI 5 (Very 
+  Large Eruption), and VEI 7 (Massive Explosive Eruption)~\citep[p. 1232]{Newhall1982}. The 
+  remaining, but the most important, parameter for the simulation model, weather prediction data, 
+  will be obtained by the same location where we found the weather maps: download prediction made by 
+  RDAPS(regional data assimilation and prediction system)~\citep{MDOP}. These datasets are extremely 
+  huge: one day of weather data takes 1.32 GigaBytes, and we are thinking of getting at least 5 
+  years of data for both training and testing sets. We need to find a reliable storage to save all 
+  the weather data, weather maps, and output images.
 
-  % TODO Learning a Model
-  % TODO Analysis Plan - Experiment
+  \paragraph{Model structure}
+  Starting from conditional GAN, which has been shown to have better performance on generating 
+  indistinguishable images compare to the "real" images~\citet{isola2016imagetoimage}, we are going 
+  to choose proper loss function which have the best result on predicting the relationship between 
+  elements dicpicted on the weather maps to the spread of the ash. For the convolutions, we will use
+  U-Net architecture proposed by Ronneberget et al.~\citet{ronneberger2015unet}, as the architecture
+  has been achieved a promising result on several different imaging 
+  tasks~\citep{isola2016imagetoimage, james2018simtoreal}.
+
+  \paragraph{Model Analysis and Experiments}
+  While we mauver over various loss functions, we are going to make various models utilizing 
+  different loss functions and compare those with quantitative score. As indicated on the previous
+  paper~\citet{isola2016imagetoimage}, it is difficult to say there exist one best representation on
+  the quality of translated images. Therefore, we need to set a realiable measurements before we 
+  analyze models using different loss function.
+
+  Once we decide the model structure, we need to verify the amount of sufficient size of training 
+  datasets so that it can translate the weather map image to simulation result flawlessly. In order 
+  to do this tasks, we need to train model with different amount of inputs. As Korean Peninsula 
+  experiencing four distinctive seasons, while we picking up the training set randomly, we would 
+  better ensure that we picks a combination of data which represent the dynamic climate of Korea. 
+  After we fit the model with different number of training datasets, we will investingate how well 
+  each model draw the result.
 }
 
-\section{Timeline} % TODO review
+\section{Timeline} % TODO Review Requested
 \fontsize{11pt}{11pt} \selectfont {
   The first thing we should do is to get the input. As there is no opened API to get the weather 
   maps and data from KMA, but they provide an interactive website to download the data, it might 
@@ -143,7 +176,7 @@
   months here. For the last one month of this research, we will write a report and posters.
 }
 
-\section{Conclusion and Future Direction}
+\section{Conclusion and Future Direction} % TODO Review Requested
 \fontsize{11pt}{11pt} \selectfont {
   We are expected to have faster way to predict possible pathway and area of volcanic fallout ash 
   spread by using simpler and lighter input, weather maps, compare to the weather dataset predicted 
@@ -155,9 +188,6 @@
   produce an output from the maps that has been publicized by different agencies. Moreover, because 
   of the limitation of dataset, we are only able to train and test on the area near Korean 
   Peninsula; the models could not be verified on the different regional settings.
-  % TODO: Figure?
-
-  % TODO Future Direction
 }
 
 \end{doublespacing}
