@@ -81,26 +81,25 @@
   The volcanic eruption is one of the most severe natural disasters which occasionally happens.
   However, compares to the other disasters which can be predicted, like typhoons and storms,
   predicting the exact time and scale of volcanic eruption considers as a very difficult task which 
-  might never be accurate, according to Einarsson~\citep[as cited in][para 7 \& 30]{fountain_2015}. 
+  might never be accurate, according to Einarsson~\citep[as cited in][para.7 \& 30]{fountain_2015}. 
   Though there exist various ways that volcanic eruption causing countless casualties and massive 
-  economic loss, according to Yun~\citet[p. 274]{Yun_2013}, the fallout ash, the focus of this 
+  economic loss, according to~\citet[p.274]{Yun_2013}, the fallout ash, the focus of this 
   research, considers as one of the most significant by-products making deadly effects.
   Including the respiratory damage of lives, threatening the safety and reliability of air 
   transportation, and the collapse of structures caused by sedimentation of the ash, the fallout ash
-  causing various impairments in a wide range of areas~\citep[p. 274-275]{Yun_2013}.
+  causing various impairments in a wide range of areas~\citep[p.274-275]{Yun_2013}.
   
   To mitigate the hazardous effects caused by the fallout ash, it is important to properly predict 
   the direction of ash spread and evacuate or alert citizens who reside through the path of the ash 
-  dispersion. Historically, by using the Eulerian or the Lagrangian 
-  approach~\citet[p. 3-4]{Bonadonna2012}, scientists are tried to make Volcanic Ash and 
-  Dispersion/Tracking Model (VATDM). These models usually focus on predicting the pathway of fallout
-  ash dispersion and the amount of deposited ash while accepting limited 
-  variables~\citep[p. 276]{Yun_2013}.
+  dispersion. Historically, by using the Eulerian or the Lagrangian approach, according to
+  ~\citet[p.3-4]{Bonadonna2012}, scientists are tried to make Volcanic Ash and Dispersion/Tracking 
+  Model (VATDM). These models usually focus on predicting the pathway of fallout ash dispersion and 
+  the amount of deposited ash while accepting limited variables~\citep[p. 276]{Yun_2013}.
 
   However, these models’ predictability might be limited due to computing 
   performance~\citep[p. 745-746]{Tanaka2022}. To make a faster prediction, the fellow scholars 
   conducted researches on making a lighter and faster prediction model~(\citet{Searcy1998}), 
-  standardizing the eruption parameters required for running the model~(\citet[p. 7]{Webley2009}), 
+  standardizing the eruption parameters required for running the model~(\citet[p.7]{Webley2009}), 
   and figuring out the way to store and retrieve different kinds of data (satellite and prediction 
   from the mathematical model) more efficiently~(\citet{Sorokin2016}). Though the advance of the 
   models' and predict utilizations' efficiency has been improved with the effort of numerous 
@@ -109,9 +108,9 @@
 
   In this research, we are going to suggest a faster way to get the prediction on the pathway and 
   area that might be affected by volcanic fallout ash: Image-to-Image Translation. By utilizing the
-  state-of-the-arts deep neural network, our goal includes verifying whether conditional GAN based 
-  deep neural network can extract the relationship between the flow of air (represented by weather 
-  maps) and the spread of fallout ash.
+  state-of-the-arts deep neural network, our goal includes verifying whether conditional Generative 
+  Adversarial Network (GAN) based deep neural network can extract the relationship between the flow 
+  of air (represented by weather maps) and the spread of fallout ash.
 }
 
 \section{Methods}  % TODO Review Requested
@@ -120,45 +119,45 @@
   To achieve our goal, making a generator which predicts the possible area of ash spread for the 
   given pair of weather maps, we first need to collect input and output data pairs. To collect 
   these, for the input image, we will download those from the “Meteorological Data Open Portal” 
-  operated by the Korea Meteorological Administration (KMA)~\citep{MDOP}. To get the output data 
-  that will be paired with the weather maps, we will go through the traditional procedure with 
+  operated by the Korea Meteorological Administration (KMA)~\citep[from][]{MDOP}. To get the output 
+  data that will be paired with the weather maps, we will go through the traditional procedure with 
   either the FALL3D or the Puff-UAF model.
   
   The simulation parameters except for the weather data – plume height, number of particles to be 
   predicted, and the mountain that has been erupted – will be set manually. To represent various 
   eruption cases, for each mountain to be used as the sample, we will simulate with the constants 
   representing Volcanic Explosivity Index (VEI) 3 (Moderate Large Eruption), VEI 5 (Very Large 
-  Eruption), and VEI 7 (Massive Explosive Eruption)~\citep[p. 1232]{Newhall1982}. The remaining, but
+  Eruption), and VEI 7 (Massive Explosive Eruption)~\citep[p.1232]{Newhall1982}. The remaining, but
   the most important, parameter for the simulation model, weather prediction data, will be obtained 
   by the same location where we found the weather maps: download prediction made by RDAPS(regional 
-  data assimilation and prediction system)~\citep{MDOP}. These datasets are extremely huge: one day 
-  of weather data takes 1.32 GigaBytes, and we are thinking of getting at least 5 years of data for 
-  both training and testing sets. We need to find reliable storage to save all the weather data, 
-  weather maps, and output images.
+  data assimilation and prediction system)~\citep[from][]{MDOP}. These datasets are extremely huge: 
+  one day of weather data takes 1.32 GigaBytes, and we are thinking of getting at least 5 years of 
+  data for both training and testing sets. We need to find reliable storage to save all the weather 
+  data, weather maps, and output images.
 
   \paragraph{Model structure}
   Starting from conditional GAN, which has been shown to have better performance on generating 
-  indistinguishable images compare to the "real" images~\citet{isola2016imagetoimage}, we are going 
-  to choose proper loss function which has the best result on predicting the relationship between 
-  elements depicted on the weather maps to the spread of the ash. For the convolutions, we will use
-  the U-Net architecture proposed by Ronneberget et al.~\citet{ronneberger2015unet}, as the
-  architecture has been achieved a promising result on several different imaging 
+  indistinguishable images compare to the "real" images (\citet{isola2016imagetoimage}), we are 
+  going to choose proper loss function which has the best result on predicting the relationship 
+  between elements depicted on the weather maps to the spread of the ash. For the convolutions, we 
+  will use the U-Net architecture proposed by ~\citet{ronneberger2015unet}, as the architecture has 
+  been achieved a promising result on several different imaging 
   tasks~\citep{isola2016imagetoimage, james2018simtoreal}.
 
   \paragraph{Model Analysis and Experiments}
   While we mauver over various loss functions, we are going to make various models utilizing 
   different loss functions and compare those with the quantitative metric. As indicated in the 
-  previous paper~\citet{isola2016imagetoimage}, it is difficult to say there exist one best 
-  representation on the quality of translated images. Therefore, we need to set a realiable 
+  previous paper (\citet{isola2016imagetoimage}), it is difficult to say there exists one best 
+  representation of the quality of translated images. Therefore, we need to set reliable 
   measurements before we analyze models using different loss functions.
 
   Once we decide the model structure, we need to verify the amount of sufficient size of training 
-  datasets so that it can translate the weather map image to simulation result flawlessly. To do 
-  these tasks, we need to train models with different amounts of inputs. As Korean Peninsula 
+  datasets so that it can translate the weather map images to simulation results flawlessly. To do 
+  these tasks, we need to train models with different amounts of inputs. As the Korean Peninsula 
   experiencing four distinctive seasons, while we picking up the training set randomly, we would 
   better ensure that we pick a combination of data that represents the dynamic climate of Korea. 
-  After we fit the model with different number of training datasets, we will investingate how well 
-  each model draw the result.
+  After we fit the model with a different number of training datasets, we will investigate how well 
+  each model draws the result.
 }
 
 \section{Timeline} % TODO Review Requested
@@ -166,14 +165,14 @@
   The first thing we should do is to get the input. As there is no available API to get the weather 
   maps and data from KMA, but they provide an interactive website to download the data, it might 
   take some time to get all data manually. Moreover, the calculation time for that simulation was 
-  not ignorable, according to previous experiment (it takes approximately one hour to get one output
-  with the laptop having Intel’s i5-3320M CPU). Considering the factor that we have access to better
-  computing power than the previous test, we are expecting to finish data collection within two 
-  months after project initiated.
+  not ignorable, according to a previous experiment (it takes approximately one hour to get one 
+  output with the laptop having Intel’s i5-3320M CPU). Considering the factor that we have access to
+  better computing power than the previous test, we are expecting to finish data collection within 
+  two months after the project initiated.
 
-  The next step is to train the generator with given input-output pair. To fit conditional GAN based
-  model and to verify the result with various test cases, we are expecting to take two additional 
-  months here. For the last month of this research, we will write a report and posters.
+  The next step is to train the generator with a given input-output pair. To fit the conditional GAN
+  based model and to verify the result with various test cases, we are expecting to take two 
+  additional months here. For the last month of this research, we will write a report and posters.
 }
 
 \section{Conclusion and Future Direction} % TODO Review Requested
@@ -181,13 +180,14 @@
   We are expected to have a faster way to predict possible pathway and area of volcanic fallout ash 
   spread by using simpler and lighter input, weather maps, compare to the weather dataset predicted 
   by RDAPS. Not only reduce the computing time to predict the spread, but the model aims to
-  reproduce as same result as possible compares to the original training result.
+  reproduce as the same result as possible compares to the original training result.
 
-  Because of the weather maps’ style is different with the agencies that produce the map (NOAA’s way
-  of making the map and KMA’s way of making the map is different), our model was not focused to 
-  produce an output from the maps that has been publicized by different agencies. Moreover, because 
-  of the limitation of dataset, we are only able to train and test on the area near Korean 
-  Peninsula; the models could not be verified on the different regional settings.
+  Because of the weather maps’ style is different with the agencies that produce the map (National 
+  Oceanic and Atmospheric Administration (NOAA)’s way of making the map and KMA’s way of making the 
+  map is different), our model was not focused to produce an output from the maps that have been 
+  publicized by different agencies. Moreover, because of the limitation of the dataset, we are only 
+  able to train and test on the area near the Korean Peninsula; the models could not be verified on 
+  the different regional settings.
 }
 
 \end{doublespacing}
