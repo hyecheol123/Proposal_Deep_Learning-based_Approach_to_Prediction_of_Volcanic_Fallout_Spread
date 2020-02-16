@@ -33,9 +33,7 @@
 \usepackage[labelfont=bf]{caption}    % For Figures' Caption
 \usepackage[numbers,round]{natbib}    % For Citation
 
-\title{Generating Models to Predict the Spread of Volcanic Fallout Ash%
-  by using conditional Generative Adversarial Network%
-  }
+\title{Deep Learning-based Approach to Prediction of Volcanic Fallut Spread}
 
 % The \author macro works with any number of authors. There are two commands
 % used to separate the names and addresses of multiple authors: \And and \AND.
@@ -81,37 +79,37 @@
   However, comparing to the other disasters which can be predicted, like typhoons and storms,
   predicting the exact time and scale of volcanic eruption considered as a very difficult task, 
   which might never be accurate, according to 
-  Einarsson~\citep[as cited in][para.7 \& 30]{fountain_2015}. 
+  Einarsson~\cite[as cited in][para.7 \& 30]{fountain_2015}. 
   Though there exist various ways that volcanic eruption to cause countless casualties and massive 
-  economic loss, according to~\citet[p.274]{Yun_2013}, the fallout ash, the focus of this 
+  economic loss, according to Yun~\cite[p.274]{Yun_2013}, the fallout ash, the focus of this 
   research, considered as one of the most significant by-products making deadly effects.
   Including the respiratory damage of lives, threatening the safety and reliability of air 
   transportation, and the collapse of structures caused by sedimentation of the ash, the fallout ash
-  causes various impairments in a wide range of areas~\citep[p.274-275]{Yun_2013}.
+  causes various impairments in a wide range of areas~\cite[p.274-275]{Yun_2013}.
   
   To mitigate the hazardous effects caused by the fallout ash, it is important to properly predict 
   the direction of ash spread and alert citizens who reside through the path of the ash dispersion. 
-  Historically, by using the Eulerian or the Lagrangian approach, according to
-  ~\citet[p.3-4]{Bonadonna2012}, scientists tried to make Volcanic Ash and Dispersion/Tracking 
+  Historically, by using the Eulerian or the Lagrangian approach, according to Bonadonna et al. 
+  \cite[p.3-4]{Bonadonna2012}, scientists tried to make Volcanic Ash and Dispersion/Tracking 
   Model (VATDM). These models usually focused on predicting the pathway of fallout ash dispersion 
-  and the amount of deposited ash while accepting limited variables~\citep[p.276]{Yun_2013}.
+  and the amount of deposited ash while accepting limited variables~\cite[p.276]{Yun_2013}.
 
   However, these models’ predictability might be limited due to computing 
-  performance~\citep[p.745-746]{Tanaka2022}, as the model needs to calculate the movement of all 
+  performance~\cite[p.745-746]{Tanaka2022}, as the model needs to calculate the movement of all 
   particles that want to predict. To be more specific, the number of particles to be tracked by 
-  VATDM and the calculation requirement have positive relationship; \citet{SCOLLO2011129} confirmed 
-  that it required up to hundreds of millions of particles to get accurate simulation result, 
-  meaning that the simulation with small number of particles might not able to illustrate the 
-  region of disperse accurately.
+  VATDM and the calculation requirement have positive relationship; Scollo et al. 
+  \cite{SCOLLO2011129} confirmed that it required up to hundreds of millions of particles to get 
+  accurate simulation result, meaning that the simulation with small number of particles might not 
+  able to illustrate the region of disperse accurately.
 
   To make a faster prediction, the fellow scholars conducted researches on making a lighter and 
-  faster prediction model~(\citet{Searcy1998}), standardizing the eruption parameters required to 
-  run the model~(\citet[p.7]{Webley2009}), and figuring out the way to store and retrieve different 
-  kinds of data (satellite and prediction from the mathematical model), which needed when deciding 
-  the final prediction result, more efficiently~(\citet{Sorokin2016}). Though the advance of the 
-  models and simulated results' utilization efficiency has been improved with the effort of numerous
-  scholars, still the needs of the calculation process last, which yet limiting the ability of 
-  prediction to the computing power.
+  faster prediction model~\cite{Searcy1998}, standardizing the eruption parameters required to run 
+  the model~(\cite[p.7]{Webley2009}), and figuring out the way to store and retrieve different kinds
+  of data (satellite and prediction from the mathematical model), which needed when deciding the 
+  final prediction result, more efficiently~\cite{Sorokin2016}. Though the advance of the models and
+  simulated results' utilization efficiency has been improved with the effort of numerous scholars,
+  still the needs of the calculation process last, which yet limiting the ability of prediction to 
+  the computing power.
 
   \fontsize{10pt}{10.5pt} \selectfont{
     \begin{figure}
@@ -141,15 +139,15 @@
   To achieve our goal, making a generator which predicts the possible area of ash spread for the 
   given weather conditions and eruption scale, we first need to collect input and output data pairs.
   To collect these, for the input images, we will download those from the “Meteorological Data Open 
-  Portal” operated by the Korea Meteorological Administration (KMA)~\citep[from][]{MDOP}. To get the
+  Portal” operated by the Korea Meteorological Administration (KMA)~\cite[from][]{MDOP}. To get the
   output data, we will go through the traditional procedure (simulation with VATDM).
   
   The simulation parameters except for the weather data will be set manually. To represent various 
   eruption cases, for each mountain to be used as the sample, we will simulate with the constants 
   representing Volcanic Explosivity Index (VEI) 3 (Moderate Large Eruption), VEI 5 (Very Large 
-  Eruption), and VEI 7 (Massive Explosive Eruption)~\citep[p.1232]{Newhall1982}. The weather 
+  Eruption), and VEI 7 (Massive Explosive Eruption)~\cite[p.1232]{Newhall1982}. The weather 
   prediction data, will be obtained by the same location where we found the weather maps: download 
-  prediction made by RDAPS(regional data assimilation and prediction system)~\citep[from][]{MDOP}. 
+  prediction made by RDAPS(regional data assimilation and prediction system)~\cite[from][]{MDOP}. 
   % May Delete this part (Line Index 157 - 159)?
   These datasets are extremely huge: one day of weather data takes 1.32 GigaBytes, and we are 
   thinking of getting at least 5 years of data for both training and testing sets. We need to find 
@@ -158,7 +156,7 @@
   \paragraph{Model structure}
   We decide to use conditional GAN based model, which has been shown to have good performance on 
   generating indistinguishable images compare to the \emph{real} images 
-  (\citet{isola2016imagetoimage}). The GAN has two distinctive parts of functions - Generator and 
+  \cite{isola2016imagetoimage}. The GAN has two distinctive parts of functions - Generator and 
   Discriminator - and we need to fit both function simultaneously. The goal for the Discriminator is
   to check whether the generated image is fake or not, while the Generator's goal is to make image, 
   which enough to make the Discriminator to categorize it to a \emph{real} image. While the original
@@ -166,19 +164,19 @@
   but also gets the \emph{condition} vectors as an input. For our model, the condition vector 
   contains information of the weather maps and the eruption scale.
 
-  Comparing our model with Isola et al.\citep{isola2016imagetoimage}'s cGAN model, whlie Isola et 
+  Comparing our model with Isola et al.\cite{isola2016imagetoimage}'s cGAN model, whlie Isola et 
   al. provided only one image as an input, we have to pass not only the several weather map images 
   but also the numerical vector indicating the eruption scale of the volcano. Moreover, while Isola 
-  et al.\citep{isola2016imagetoimage} challenged to provide randomness to their output, we want our 
+  et al.\cite{isola2016imagetoimage} challenged to provide randomness to their output, we want our 
   model to provide same output when the same inputs have been provided. Lastly, our model needs to 
   provide continuous images to represent the dispersion of volcaninc ash overtime, however, the 
-  Isola et al.\citep{isola2016imagetoimage}'s model only need to provide a still photograph as an 
+  Isola et al.\cite{isola2016imagetoimage}'s model only need to provide a still photograph as an 
   output.
 
-  To contruct the model, we will use U-Net architecture, proposed by proposed by 
-  \citet{ronneberger2015unet}, for the convolutions to pass the information on the weather maps to 
+  To contruct the model, we will use U-Net architecture, proposed by proposed by Ronneberger et al.
+  \cite{ronneberger2015unet}, for the convolutions to pass the information on the weather maps to 
   the neural network. As U-Net architecture has achieved a promising result on several different 
-  image tasks\citep{isola2016imagetoimage,james2018simtoreal}, we are expecting that this 
+  image tasks\cite{isola2016imagetoimage,james2018simtoreal}, we are expecting that this 
   architecture also works for our task. However, we still have to come up with a solution to pass 
   information from several different images and one numerical vector to our neural network when we 
   train our model. After that, we are going to choose proper loss functions that make the best 
@@ -188,7 +186,7 @@
   \paragraph{Model Analysis and Experiments}
   While we mauver over various loss functions, we are going to make various models utilizing 
   different loss functions and compare those with the quantitative metric. As indicated in the 
-  previous paper (\citet{isola2016imagetoimage}), it is difficult to say there exists one best 
+  previous paper \cite{isola2016imagetoimage}, it is difficult to say there exists one best 
   representation of the quality of translated images. Therefore, we need to set reliable 
   measurements before we analyze models using different loss functions.
 
