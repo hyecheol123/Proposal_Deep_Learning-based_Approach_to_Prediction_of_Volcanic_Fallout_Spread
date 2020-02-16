@@ -102,23 +102,24 @@
   accurate simulation result, meaning that the simulation with small number of particles might not 
   able to illustrate the region of disperse accurately.
 
-  To make a faster prediction, the fellow scholars conducted researches on making a lighter and 
-  faster prediction model~\cite{Searcy1998}, standardizing the eruption parameters required to run 
-  the model~(\cite[p.7]{Webley2009}), and figuring out the way to store and retrieve different kinds
-  of data (satellite and prediction from the mathematical model), which needed when deciding the 
-  final prediction result, more efficiently~\cite{Sorokin2016}. Though the advance of the models and
-  simulated results' utilization efficiency has been improved with the effort of numerous scholars,
+  To make a faster prediction, researchers studied on making a lighter and faster prediction model
+  \cite{Searcy1998}, standardizing the eruption parameters required to run the model 
+  (\cite[p.7]{Webley2009}), and figuring out the way to store and retrieve different kinds of data
+  (satellite and prediction from the mathematical model), which needed when deciding the final 
+  prediction result, more efficiently~\cite{Sorokin2016}. Though the advance of the models and 
+  simulated results' utilization efficiency has been improved with the effort of numerous scholars, 
   still the needs of the calculation process last, which yet limiting the ability of prediction to 
   the computing power.
 
   \fontsize{10pt}{10.5pt} \selectfont{
     \begin{figure}
       \centering
-      \includegraphics[width = \linewidth]{ModelStructure.jpg}
-      \caption{\textbf{Graphic Illustration of Generator's structure} \newline
-                Our generator gets the weather maps (both surface and upper air) and eruption scale 
-                parameters (Plume height, Plume shape, Volume of Emitted Ash, and the location of 
-                mountain) as an input to produce simulated result, the output.
+      \includegraphics[width = \linewidth]{ModelStructure.png}
+      \caption{\textbf{Overview of the Research Goal}
+                This research aim to make a deep-learning model which predicts volcaninc fallout 
+                spread while getting the weather maps (both surface and upper air) and eruption 
+                scale parameters (Plume height, Plume shape, Volume of Emitted Ash, and the location
+                of mountain) as an input.
               }
       \vspace{-5mm}
       \label{fig1}
@@ -147,21 +148,17 @@
   representing Volcanic Explosivity Index (VEI) 3 (Moderate Large Eruption), VEI 5 (Very Large 
   Eruption), and VEI 7 (Massive Explosive Eruption)~\cite[p.1232]{Newhall1982}. The weather 
   prediction data, will be obtained by the same location where we found the weather maps: download 
-  prediction made by RDAPS(regional data assimilation and prediction system)~\cite[from][]{MDOP}. 
-  % May Delete this part (Line Index 157 - 159)?
-  These datasets are extremely huge: one day of weather data takes 1.32 GigaBytes, and we are 
-  thinking of getting at least 5 years of data for both training and testing sets. We need to find 
-  reliable storage to save all the weather data, weather maps, and output images.
+  prediction made by RDAPS(regional data assimilation and prediction system)~\cite[from][]{MDOP}.
 
   \paragraph{Model structure}
-  We decide to use conditional GAN based model, which has been shown to have good performance on 
+  We decide to use conditional GAN-based model, which has been shown to have good performance on 
   generating indistinguishable images compare to the \emph{real} images 
   \cite{isola2016imagetoimage}. The GAN has two distinctive parts of functions - Generator and 
   Discriminator - and we need to fit both function simultaneously. The goal for the Discriminator is
   to check whether the generated image is fake or not, while the Generator's goal is to make image, 
   which enough to make the Discriminator to categorize it to a \emph{real} image. While the original
-  GAN only use a random noize to generate the output, the conditional GAN not only gets random noize
-  but also gets the \emph{condition} vectors as an input. For our model, the condition vector 
+  GAN only uses a random noize to generate the output, the conditional GAN not only gets random 
+  noize but also gets the \emph{condition} vectors as an input. For our model, the condition vector 
   contains information of the weather maps and the eruption scale.
 
   Comparing our model with Isola et al.\cite{isola2016imagetoimage}'s cGAN model, whlie Isola et 
@@ -209,14 +206,14 @@
       \begin{tabular}{lll}
         \toprule
         \cmidrule(r){1-2}
-        Due Date     & Task Description \\
+        Due date     & Task description \\
         \midrule
-        Mar. 14 & Select Proper VATDM to Generate Training/Testing Output \\ 
-        Mar. 20 & Collect Weather Maps and Weather Prediction Data \\
-        Apr. 10 & Run Simulation and Collect Outputs \\
-        Apr. 31 & Choose Candidates for Final Model's Structure \\
-        Jun. 15 & Conduct and Analyze Experiments on Each Models \\
-        Jul. 15 & Write Reports \\
+        Mar. 14 & Select proper VATDM to generate training/testing sets \\ 
+        Mar. 20 & Collect weather maps and weather prediction data \\
+        Apr. 10 & Run simulation and collect outputs \\
+        Apr. 31 & Choose candidates for final model's structure \\
+        Jun. 15 & Conduct and analyze experiments on each nodels \\
+        Jul. 15 & Write reports \\
         \bottomrule
       \end{tabular}
     \end{table}
