@@ -91,26 +91,33 @@
   causes various impairments in a wide range of areas~\citep[p.274-275]{Yun_2013}.
   
   To mitigate the hazardous effects caused by the fallout ash, it is important to properly predict 
-  the direction of ash spread and evacuate or alert citizens who reside through the path of the ash 
-  dispersion. Historically, by using the Eulerian or the Lagrangian approach, according to
-  ~\citet[p.3-4]{Bonadonna2012}, scientists are tried to make Volcanic Ash and Dispersion/Tracking 
-  Model (VATDM). These models usually focus on predicting the pathway of fallout ash dispersion and 
-  the amount of deposited ash while accepting limited variables~\citep[p. 276]{Yun_2013}.
+  the direction of ash spread and alert citizens who reside through the path of the ash dispersion. 
+  Historically, by using the Eulerian or the Lagrangian approach, according to
+  ~\citet[p.3-4]{Bonadonna2012}, scientists tried to make Volcanic Ash and Dispersion/Tracking 
+  Model (VATDM). These models usually focused on predicting the pathway of fallout ash dispersion 
+  and the amount of deposited ash while accepting limited variables~\citep[p.276]{Yun_2013}.
 
   However, these models’ predictability might be limited due to computing 
-  performance~\citep[p. 745-746]{Tanaka2022}. To make a faster prediction, the fellow scholars 
-  conducted researches on making a lighter and faster prediction model~(\citet{Searcy1998}), 
-  standardizing the eruption parameters required for running the model~(\citet[p.7]{Webley2009}), 
-  and figuring out the way to store and retrieve different kinds of data (satellite and prediction 
-  from the mathematical model) more efficiently~(\citet{Sorokin2016}). Though the advance of the 
-  models' and predict utilizations' efficiency has been improved with the effort of numerous 
+  performance~\citep[p.745-746]{Tanaka2022}, as the model needs to calculate the movement of all 
+  particles that want to predict. To be more specific, the number of particles to be tracked by 
+  VATDM and the calculation requirement have positive relationship; \citet{SCOLLO2011129} confirmed 
+  that it required up to hundreds of millions of particles to get accurate simulation result, 
+  meaning that the simulation with small number of particles might not able to illustrate the 
+  region of disperse accurately.
+
+  To make a faster prediction, the fellow scholars conducted researches on making a lighter and 
+  faster prediction model~(\citet{Searcy1998}), standardizing the eruption parameters required to 
+  run the model~(\citet[p.7]{Webley2009}), and figuring out the way to store and retrieve different 
+  kinds of data (satellite and prediction from the mathematical model), which needed when deciding 
+  the final prediction result, more efficiently~(\citet{Sorokin2016}). Though the advance of the 
+  models and simulated results' utilization efficiency has been improved with the effort of numerous
   scholars, still the needs of the calculation process last, which yet limiting the ability of 
   prediction to the computing power.
 
   In this research, we are going to suggest a faster way to get the prediction on the pathway and 
   area that might be affected by volcanic fallout ash: Image-to-Image Translation. By utilizing the
   state-of-the-arts deep neural network, our goal includes verifying whether conditional Generative 
-  Adversarial Network (GAN) based deep neural network can extract the relationship between the flow 
+  Adversarial Network (cGAN) based deep neural network can extract the relationship between the flow
   of air (represented by weather maps) and the spread of fallout ash.
 }
 
