@@ -31,7 +31,7 @@
 \usepackage{lmodern}                  % Font-size setting
 \usepackage{graphicx}                 % For Figures
 \usepackage[labelfont=bf]{caption}    % For Figures' Caption
-\usepackage[numbers,round]{natbib}    % For Citation
+\usepackage[numbers]{natbib}          % For Citation
 
 \title{Deep Learning-based Approach to Prediction of Volcanic Fallut Spread}
 
@@ -115,6 +115,11 @@
   still the needs of the calculation process last, which yet limiting the ability of prediction to 
   the computing power.
 
+  In this research, we are going to suggest a faster way to get the prediction on the pathway and 
+  area that might be affected by volcanic fallout ash: deep learning. By utilizing the
+  state-of-the-arts deep learning architectures, our goal includes verifying whether deep learning 
+  can predict the spread of fallout ash. (See \textbf{Figure \ref{fig1}} for the model's structure)
+
   \fontsize{10pt}{10.5pt} \selectfont{
     \begin{figure}
       \centering
@@ -129,11 +134,6 @@
       \label{fig1}
     \end{figure}
   }
-
-  In this research, we are going to suggest a faster way to get the prediction on the pathway and 
-  area that might be affected by volcanic fallout ash: deep learning. By utilizing the
-  state-of-the-arts deep learning architectures, our goal includes verifying whether deep learning 
-  can predict the spread of fallout ash. (See \textbf{Figure \ref{fig1}} for the model's structure)
 
   To be more specific, we are going to construct a model based on the conditional Generative 
   Adversarial Network (cGAN), proposed by Isola et al. \cite{isola2016imagetoimage},which focused on
@@ -208,6 +208,21 @@
 
 \section{Timeline} % TODO Review Requested
 \fontsize{11pt}{11pt} \selectfont {
+
+  The first thing we should do is to get the input. As there is no available API to get the weather 
+  maps and data from KMA, but they provide an interactive website to download the data, it might 
+  take some time to get all data manually. Moreover, the calculation time for that simulation was 
+  not ignorable, according to a previous experiment (it takes approximately one hour to get one 
+  output with the laptop having Intel’s i5-3320M CPU). Considering the factor that we have access to
+  better computing power than the previous test, we are expecting to finish data collection within 
+  two months after the project initiated.
+
+  The next step is to train the generator with a given input-output pair. To fit the conditional GAN
+  based model and to verify the result with various test cases, we are expecting to take two 
+  additional months here. For the last month of this research, we will write a report and posters.
+
+  The detailed timeline is on the \textbf{Table \ref{table1}}.
+
   \fontsize{10pt}{10pt} \selectfont {
     \begin{table}
       \caption{Detailed Timeline}
@@ -228,20 +243,6 @@
       \end{tabular}
     \end{table}
   }
-
-  The first thing we should do is to get the input. As there is no available API to get the weather 
-  maps and data from KMA, but they provide an interactive website to download the data, it might 
-  take some time to get all data manually. Moreover, the calculation time for that simulation was 
-  not ignorable, according to a previous experiment (it takes approximately one hour to get one 
-  output with the laptop having Intel’s i5-3320M CPU). Considering the factor that we have access to
-  better computing power than the previous test, we are expecting to finish data collection within 
-  two months after the project initiated.
-
-  The next step is to train the generator with a given input-output pair. To fit the conditional GAN
-  based model and to verify the result with various test cases, we are expecting to take two 
-  additional months here. For the last month of this research, we will write a report and posters.
-
-  The detailed timeline is on the \textbf{Table \ref{table1}}.
 }
 
 \section{Conclusion and Future Direction} % TODO Review Requested
