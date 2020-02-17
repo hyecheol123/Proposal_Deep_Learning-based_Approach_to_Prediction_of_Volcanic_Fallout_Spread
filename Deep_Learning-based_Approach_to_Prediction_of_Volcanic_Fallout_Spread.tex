@@ -67,14 +67,14 @@
 \begin{abstract}
   \fontsize{11pt}{11pt} \selectfont {
     The volcanic fallout ash is one of the major causes which make the volcanic eruption a fatal 
-    natural disaster. The prediction on the spread of volcanic fallout can be made. However, the 
+    natural disaster. The prediction of the spread of volcanic fallout can be made. However, the 
     calculation is complicated and requires huge computing resources to make an accurate prediction. 
     Previously, researchers figured out several ways to predict it faster, but it still required to 
     run the simulation. Therefore, we propose the use of deep learning to make a fast prediction of 
-    the ash spread. Specifically, we will use cGAN based architecture to predict ash spread patterns
+    the ash spread. Specifically, we will use cGAN-based architecture to predict ash spread patterns
     from various input data including weather maps and eruption scale parameters. At the end of the 
     project, we plan to present a paper at a conference as well as open-source our trained model so 
-    that the whole society can be well-prepared form the fatal disaster by getting accurate 
+    that the whole society can be well-prepared for the fatal disaster by getting accurate 
     predictions faster.
   }
 \end{abstract}
@@ -95,8 +95,8 @@
   areas~\cite[p.274-275]{Yun_2013}.
   
   To mitigate the hazardous effects caused by the fallout ash, it is important to properly predict 
-  the direction of ash spread and alert citizens who in the affected area. Historically, according 
-  to Bonadonna et al. \cite[p.3-4]{Bonadonna2012}, scientists tried to make Volcanic Ash and 
+  the direction of ash spread and alert citizens in the affected area. Historically, according to 
+  Bonadonna et al. \cite[p.3-4]{Bonadonna2012}, scientists tried to make Volcanic Ash and 
   Dispersion/Tracking Model (VATDM) by using the Eulerian or the Lagrangian approach. These models 
   usually focused on predicting the pathway of fallout ash dispersion and the amount of deposited 
   ash while accepting limited variables~\cite[p.276]{Yun_2013}.
@@ -121,7 +121,7 @@
   In this research, we are going to suggest a faster way to get the prediction on the pathway and 
   area that might be affected by volcanic fallout ash: deep learning. By utilizing the
   state-of-the-arts deep learning architectures, our goal includes verifying whether deep learning 
-  can predict the spread of fallout ash. (See \textbf{Figure \ref{fig1}} for the model's structure)
+  can predict the spread of fallout ash. (See Figure \ref{fig1} for the model's structure)
 
   \fontsize{10pt}{10.5pt} \selectfont{
     \begin{figure}
@@ -168,11 +168,11 @@
   We decide to use a conditional GAN-based model, which has been shown to have a good performance on 
   generating indistinguishable images compare to the \emph{real} images 
   \cite{isola2016imagetoimage}. The GAN has two distinctive parts of functions - Generator and 
-  Discriminator - and we need to fit both functions simultaneously. The goal for the Discriminator 
+  Discriminator - and we need to learn both functions simultaneously. The goal for the Discriminator 
   is to check whether the generated image is fake or not, while the Generator's goal is to make an 
   image, which is enough to make the Discriminator categorize it as a \emph{real} image. While the 
-  original GAN only uses a random noize to generate the output, the conditional GAN gets not only 
-  random noize but also the \emph{condition} vectors as an input. For our model, the condition 
+  original GAN only uses a random noise to generate the output, the conditional GAN gets not only 
+  random noise but also the \emph{condition} vectors as an input. For our model, the condition 
   vector contains information about the weather maps and the eruption scale.
 
   Comparing our model with Isola et al.\cite{isola2016imagetoimage}'s cGAN model, while Isola et 
@@ -220,7 +220,7 @@
   The next step is to train the generator with a given input-output pair. As we have to fit the 
   conditional GAN based model and verify the result with various test cases, we expect to take two 
   additional months. For the last month of this research, we will write a report and create posters.
-  The detailed timeline is in \textbf{Table \ref{table1}}.
+  The detailed timeline is in Table \ref{table1}.
 
   \fontsize{10pt}{10pt} \selectfont {
     \begin{table}
@@ -237,7 +237,8 @@
         Apr. 10 & Run simulation and collect outputs \\
         Apr. 31 & Choose candidates for final model's structure \\
         Jun. 15 & Conduct and analyze experiments on each nodels \\
-        Jul. 15 & Write reports \\
+        Aug. 09 & Write reports, submit a conference workshop paper, %
+                  and release the model as open-source \\
         \bottomrule
       \end{tabular}
     \end{table}
