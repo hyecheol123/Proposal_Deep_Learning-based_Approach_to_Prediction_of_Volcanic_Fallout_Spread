@@ -34,7 +34,7 @@
 \usepackage[numbers]{natbib}          % For Citation
 
 \title{Deep Learning-based Approach \linebreak%
-       to Prediction of Volcanic Fallut Spread
+       to Prediction of Volcanic Fallout Spread
       }
 
 % The \author macro works with any number of authors. There are two commands
@@ -66,16 +66,16 @@
 
 \begin{abstract}
   \fontsize{11pt}{11pt} \selectfont {
-    The volcaninc fallout ash is one of the major causes making the volcanic eruption a fatal 
+    The volcanic fallout ash is one of the major causes which make the volcanic eruption a fatal 
     natural disaster. The prediction on the spread of volcanic fallout can be made. However, the 
-    calculation is complicated and requires huge computing resources to make accurate prediction. 
-    Previously, researchers figured out several ways to predict it faster, but still it required to 
+    calculation is complicated and requires huge computing resources to make an accurate prediction. 
+    Previously, researchers figured out several ways to predict it faster, but it still required to 
     run the simulation. Therefore, we propose the use of deep learning to make a fast prediction of 
     the ash spread. Specifically, we will use cGAN based architecture to predict ash spread patterns
     from various input data including weather maps and eruption scale parameters. At the end of the 
-    project, we plan to present a paper at a conference as weel as open-source our trained model so 
-    that the whole society can be well prepared form the fatal disaster by getting the accurate 
-    prediction faster.
+    project, we plan to present a paper at a conference as well as open-source our trained model so 
+    that the whole society can be well-prepared form the fatal disaster by getting accurate 
+    predictions faster.
   }
 \end{abstract}
 
@@ -83,7 +83,7 @@
 \section{Introduction} % TODO Review Requested
 \fontsize{11pt}{11pt} \selectfont {
   The volcanic eruption is one of the most severe natural disasters which occasionally happens.
-  However, comparing to the other disasters which can be predicted, like typhoons and storms,
+  However, compared to the other disasters which can be predicted, like typhoons and storms,
   predicting the exact time and scale of volcanic eruption considered as a very difficult task, 
   which might never be accurate, according to 
   Einarsson~\cite[as cited in][para.7 \& 30]{fountain_2015}. 
@@ -106,8 +106,8 @@
   particles that need to be predicted. To be more specific, there is a positive relationship between 
   the number of particles to be tracked by VATDM and the calculation requirement. Scollo et al. 
   \cite{SCOLLO2011129} confirmed that it required up to hundreds of millions of particles to get 
-  accurate simulation result, meaning that the simulation with small number of particles might not 
-  be able to illustrate the region of disperse accurately.
+  accurate simulation results, meaning that the simulation with a small number of particles might 
+  not be able to illustrate the region of dispersal accurately.
 
   To make a faster prediction, researchers studied on making a lighter and faster prediction model
   \cite{Searcy1998}, standardizing the eruption parameters required to run the model 
@@ -128,10 +128,10 @@
       \centering
       \includegraphics[width = \linewidth]{ModelStructure.png}
       \caption{\textbf{Overview of the Research Goal}
-                This research aims to make a deep-learning model predicting volcaninc fallout 
+                This research aims to make a deep-learning model predicting volcanic fallout 
                 spread while accepting the weather maps (both surface and upper air) and eruption 
                 scale parameters (Plume height, Plume shape, Volume of Emitted Ash, and the location
-                of mountain) as an input.
+                of the mountain) as an input.
               }
       \vspace{-5mm}
       \label{fig1}
@@ -143,8 +143,8 @@
   on translating one image to the other type of image (Image-to-Image Translation). Comparing to the 
   previous work \cite{isola2016imagetoimage}, while the previous architecture only got an image as 
   an input and produced one output image, our deep learning model should get several images and need
-  to produce continous images representing the prediction of the direction and speed of the ash 
-  spread. The details regarding the model structure are writen below (Method - Model structure).
+  to produce continuous images representing the prediction of the direction and speed of the ash 
+  spread. The details regarding the model structure are written below (Method - Model structure).
 }
 
 \section{Methods}  % TODO Review Requested
@@ -165,22 +165,22 @@
   Eruption), and VEI 7 (Massive Explosive Eruption)~\cite[p.1232]{Newhall1982}. 
 
   \paragraph{Model structure}
-  We decide to use conditional GAN-based model, which has been shown to have good performance on 
+  We decide to use a conditional GAN-based model, which has been shown to have a good performance on 
   generating indistinguishable images compare to the \emph{real} images 
   \cite{isola2016imagetoimage}. The GAN has two distinctive parts of functions - Generator and 
-  Discriminator - and we need to fit both function simultaneously. The goal for the Discriminator is
-  to check whether the generated image is fake or not, while the Generator's goal is to make image, 
-  which is enough to make the Discriminator to categorize it as a \emph{real} image. While the 
+  Discriminator - and we need to fit both functions simultaneously. The goal for the Discriminator 
+  is to check whether the generated image is fake or not, while the Generator's goal is to make an 
+  image, which is enough to make the Discriminator categorize it as a \emph{real} image. While the 
   original GAN only uses a random noize to generate the output, the conditional GAN gets not only 
   random noize but also the \emph{condition} vectors as an input. For our model, the condition 
-  vector contains information of the weather maps and the eruption scale.
+  vector contains information about the weather maps and the eruption scale.
 
-  Comparing our model with Isola et al.\cite{isola2016imagetoimage}'s cGAN model, whlie Isola et 
+  Comparing our model with Isola et al.\cite{isola2016imagetoimage}'s cGAN model, while Isola et 
   al. provided only one image as an input, we have to pass the several weather map images and the 
   numerical vector indicating the eruption scale of the volcano. Moreover, while Isola et 
   al.\cite{isola2016imagetoimage} challenged to provide randomness to the output, we want our model 
   to provide the identical output when the same inputs have been provided. Lastly, our model needs 
-  to provide continuous images to represent the dispersion of volcaninc ash overtime, however, the 
+  to provide continuous images to represent the dispersion of volcanic ash over time, however, the 
   Isola et al.\cite{isola2016imagetoimage}'s model only needed to generate a still photograph.
 
   To construct the model, we will use the U-Net architecture, proposed by Ronneberger et al.
@@ -189,27 +189,26 @@
   image tasks\cite{isola2016imagetoimage,james2018simtoreal}, we expect that the architecture will 
   also work for our task. However, we still have to find a solution to pass information from several
   different images and one numerical vector to our neural network when we train our model. After 
-  that, we are going to choose proper loss functions that make the best result on predicting the 
+  that, we are going to choose proper loss functions that make the best result in predicting the 
   relationship between elements depicted on the weather maps to the spread of the ash.
 
   \paragraph{Model Analysis and Experiments}
-  While we manuver over various loss functions, we are going to make various models utilizing 
+  While we maneuver over various loss functions, we are going to make various models utilizing 
   different loss functions and compare those with the quantitative metric. As indicated in the 
   previous paper \cite{isola2016imagetoimage}, it is difficult to say that there exists one best 
   representation of the quality of translated images. Therefore, we need to set reliable 
   measurements before we analyze models using different loss functions.
 
-  Once we decide the model structure, we need to determine the amount of training datasets so that 
+  Once we decide the model structure, we need to determine the number of training datasets so that 
   it can translate the weather map images to simulation results flawlessly. To do these tasks, we 
   need to train models with different amounts of inputs. While we select training sets randomly, we 
-  should ensure that we pick a combination of data that represent the dynamic climate of Korea as it
-  experiences four distinctive seasons. After we fit the model with a different number of training 
-  datasets, we will investigate how well each model draws the result.
+  should ensure that we pick a combination of data that represents the dynamic climate of Korea as 
+  it experiences four distinctive seasons. After we fit the model with a different number of 
+  training datasets, we will investigate how well each model draws the result.
 }
 
 \section{Timeline} % TODO Review Requested
 \fontsize{11pt}{11pt} \selectfont {
-
   The first thing we should do is to get the input. There is no available API to get the weather 
   maps and data from KMA. Therefore, we must use the interactive website provided by KMA to download
   the data; this is expected to take some time. Moreover, the calculation time for that simulation 
@@ -222,7 +221,7 @@
   conditional GAN based model and verify the result with various test cases, we expect to take two 
   additional months. For the last month of this research, we will write a report and create posters.
 
-  The detailed timeline is on \textbf{Table \ref{table1}}.
+  The detailed timeline is in \textbf{Table \ref{table1}}.
 
   \fontsize{10pt}{10pt} \selectfont {
     \begin{table}
