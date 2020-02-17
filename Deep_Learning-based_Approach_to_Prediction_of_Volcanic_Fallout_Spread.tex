@@ -125,8 +125,8 @@
       \centering
       \includegraphics[width = \linewidth]{ModelStructure.png}
       \caption{\textbf{Overview of the Research Goal}
-                This research aim to make a deep-learning model which predicts volcaninc fallout 
-                spread while getting the weather maps (both surface and upper air) and eruption 
+                This research aims to make a deep-learning model which predicts volcaninc fallout 
+                spread while accepting the weather maps (both surface and upper air) and eruption 
                 scale parameters (Plume height, Plume shape, Volume of Emitted Ash, and the location
                 of mountain) as an input.
               }
@@ -136,12 +136,12 @@
   }
 
   To be more specific, we are going to construct a model based on the conditional Generative 
-  Adversarial Network (cGAN), proposed by Isola et al. \cite{isola2016imagetoimage},which focused on
-  translating one image to the other type of image (Image-to-Image Translation). Comparing to the 
+  Adversarial Network (cGAN), proposed by Isola et al. \cite{isola2016imagetoimage}, which focused 
+  on translating one image to the other type of image (Image-to-Image Translation). Comparing to the 
   previous work \cite{isola2016imagetoimage}, while the previous architecture only got an image as 
   an input and produced one output image, our deep learning model should get several images and need
-  to produce continous images to represent the direction and speed of ash spread. The details 
-  regarding the model structure are writen below (Method - Model structure).
+  to produce continous images representing the prediction of the direction and speed of the ash 
+  spread. The details regarding the model structure are writen below (Method - Model structure).
 }
 
 \section{Methods}  % TODO Review Requested
@@ -149,16 +149,17 @@
   \paragraph{Data Collection}
   To achieve our goal, making a generator which predicts the possible area of ash spread for the 
   given weather conditions and eruption scale, we first need to collect input and output data pairs.
-  To collect these, for the input images, we will download those from the “Meteorological Data Open 
-  Portal” operated by the Korea Meteorological Administration (KMA)~\cite[from][]{MDOP}. To get the
-  output data, we will go through the traditional procedure (simulation with VATDM).
+  To collect these, for the input images, we will download both surface and upper air weather maps 
+  from the “Meteorological Data Open Portal” operated by the Korea Meteorological Administration 
+  (KMA)~\cite{MDOP}. To get the output images, we will go through the traditional procedure 
+  (simulating by VATDM).
   
+  The weather prediction data will be obtained by the same location where we found the weather maps:
+  download prediction made by RDAPS(regional data assimilation and prediction system)~\cite{MDOP}.
   The simulation parameters except for the weather data will be set manually. To represent various 
   eruption cases, for each mountain to be used as the sample, we will simulate with the constants 
   representing Volcanic Explosivity Index (VEI) 3 (Moderate Large Eruption), VEI 5 (Very Large 
-  Eruption), and VEI 7 (Massive Explosive Eruption)~\cite[p.1232]{Newhall1982}. The weather 
-  prediction data, will be obtained by the same location where we found the weather maps: download 
-  prediction made by RDAPS(regional data assimilation and prediction system)~\cite[from][]{MDOP}.
+  Eruption), and VEI 7 (Massive Explosive Eruption)~\cite[p.1232]{Newhall1982}. 
 
   \paragraph{Model structure}
   We decide to use conditional GAN-based model, which has been shown to have good performance on 
@@ -166,62 +167,59 @@
   \cite{isola2016imagetoimage}. The GAN has two distinctive parts of functions - Generator and 
   Discriminator - and we need to fit both function simultaneously. The goal for the Discriminator is
   to check whether the generated image is fake or not, while the Generator's goal is to make image, 
-  which enough to make the Discriminator to categorize it to a \emph{real} image. While the original
-  GAN only uses a random noize to generate the output, the conditional GAN not only gets random 
-  noize but also gets the \emph{condition} vectors as an input. For our model, the condition vector 
-  contains information of the weather maps and the eruption scale.
+  which is enough to make the Discriminator to categorize it as a \emph{real} image. While the 
+  original GAN only uses a random noize to generate the output, the conditional GAN gets not only 
+  random noize but also the \emph{condition} vectors as an input. For our model, the condition 
+  vector contains information of the weather maps and the eruption scale.
 
   Comparing our model with Isola et al.\cite{isola2016imagetoimage}'s cGAN model, whlie Isola et 
-  al. provided only one image as an input, we have to pass not only the several weather map images 
-  but also the numerical vector indicating the eruption scale of the volcano. Moreover, while Isola 
-  et al.\cite{isola2016imagetoimage} challenged to provide randomness to their output, we want our 
-  model to provide same output when the same inputs have been provided. Lastly, our model needs to 
-  provide continuous images to represent the dispersion of volcaninc ash overtime, however, the 
-  Isola et al.\cite{isola2016imagetoimage}'s model only need to provide a still photograph as an 
-  output.
+  al. provided only one image as an input, we have to pass the several weather map images and the 
+  numerical vector indicating the eruption scale of the volcano. Moreover, while Isola et 
+  al.\cite{isola2016imagetoimage} challenged to provide randomness to the output, we want our model 
+  to provide the identical output when the same inputs have been provided. Lastly, our model needs 
+  to provide continuous images to represent the dispersion of volcaninc ash overtime, however, the 
+  Isola et al.\cite{isola2016imagetoimage}'s model only needed to generate a still photograph.
 
-  To contruct the model, we will use U-Net architecture, proposed by proposed by Ronneberger et al.
+  To contruct the model, we will use the U-Net architecture, proposed by Ronneberger et al.
   \cite{ronneberger2015unet}, for the convolutions to pass the information on the weather maps to 
-  the neural network. As U-Net architecture has achieved a promising result on several different 
-  image tasks\cite{isola2016imagetoimage,james2018simtoreal}, we are expecting that this 
-  architecture also works for our task. However, we still have to come up with a solution to pass 
-  information from several different images and one numerical vector to our neural network when we 
-  train our model. After that, we are going to choose proper loss functions that make the best 
-  result on predicting the relationship between elements depicted on the weather maps to the spread 
-  of the ash.
+  the neural network. As the U-Net architecture has achieved promising results on several different
+  image tasks\cite{isola2016imagetoimage,james2018simtoreal}, we expect that this architecture will 
+  also work for our task. However, we still have to come up with a solution to pass information from
+  several different images and one numerical vector to our neural network when we train our model. 
+  After that, we are going to choose proper loss functions that make the best result on predicting 
+  the relationship between elements depicted on the weather maps to the spread of the ash.
 
   \paragraph{Model Analysis and Experiments}
-  While we mauver over various loss functions, we are going to make various models utilizing 
+  While we manuver over various loss functions, we are going to make various models utilizing 
   different loss functions and compare those with the quantitative metric. As indicated in the 
-  previous paper \cite{isola2016imagetoimage}, it is difficult to say there exists one best 
+  previous paper \cite{isola2016imagetoimage}, it is difficult to say that there exists one best 
   representation of the quality of translated images. Therefore, we need to set reliable 
   measurements before we analyze models using different loss functions.
 
-  Once we decide the model structure, we need to verify the amount of sufficient size of training 
-  datasets so that it can translate the weather map images to simulation results flawlessly. To do 
-  these tasks, we need to train models with different amounts of inputs. As the Korean Peninsula 
-  experiencing four distinctive seasons, while we picking up the training set randomly, we would 
-  better ensure that we pick a combination of data that represents the dynamic climate of Korea. 
-  After we fit the model with a different number of training datasets, we will investigate how well 
-  each model draws the result.
+  Once we decide the model structure, we need to determine the amount of training datasets so that 
+  it can translate the weather map images to simulation results flawlessly. To do these tasks, we 
+  need to train models with different amounts of inputs. While we select training sets randomly, we 
+  should ensure that we pick a combination of data that represent the dynamic climate of Korea as it
+  experiences four distinctive seasons. After we fit the model with a different number of training 
+  datasets, we will investigate how well each model draws the result.
 }
 
 \section{Timeline} % TODO Review Requested
 \fontsize{11pt}{11pt} \selectfont {
 
-  The first thing we should do is to get the input. As there is no available API to get the weather 
-  maps and data from KMA, but they provide an interactive website to download the data, it might 
-  take some time to get all data manually. Moreover, the calculation time for that simulation was 
-  not ignorable, according to a previous experiment (it takes approximately one hour to get one 
-  output with the laptop having Intel’s i5-3320M CPU). Considering the factor that we have access to
-  better computing power than the previous test, we are expecting to finish data collection within 
-  two months after the project initiated.
+  The first thing we should do is to get the input. There is no available API to get the weather 
+  maps and data from KMA. Therefore, we must use the interactive website provided by KMA to download
+  the data; this is expected to take some time. Moreover, the calculation time for that simulation 
+  was not ignorable, according to a previous experiment (it takes approximately one hour to get one 
+  output through a laptop with Intel’s i5-3320M CPU). Considering that we have access to better 
+  computing power than the previous test, we expect to finish data collection within two months 
+  after the project's initiation.
 
-  The next step is to train the generator with a given input-output pair. To fit the conditional GAN
-  based model and to verify the result with various test cases, we are expecting to take two 
-  additional months here. For the last month of this research, we will write a report and posters.
+  The next step is to train the generator with a given input-output pair. As we have to fit the 
+  conditional GAN based model and verify the result with various test cases, we expect to take two 
+  additional months. For the last month of this research, we will write a report and create posters.
 
-  The detailed timeline is on the \textbf{Table \ref{table1}}.
+  The detailed timeline is on \textbf{Table \ref{table1}}.
 
   \fontsize{10pt}{10pt} \selectfont {
     \begin{table}
@@ -247,12 +245,12 @@
 
 \section{Conclusion and Future Direction} % TODO Review Requested
 \fontsize{11pt}{11pt} \selectfont {
-  We are expected to make a deep neural network model to predict possible pathway and area of 
-  volcanic fallout ash spread faster than the previous methods, by using simpler and lighter input, 
-  weather maps, compare to the weather dataset predicted by RDAPS. Not only reduce the computing 
-  time to predict the spread, but the model aims to reproduce as the same result as possible 
-  compares to the original training result. To verify our idea and model structure, we utilize 
-  weather maps representing the weather conditions and volcanos near the Korean Peninsula.
+  We expect to make a deep neural network model to predict possible pathways and areas where 
+  volcanic fallout ash spreads faster than the previous methods by using simpler and lighter input, 
+  the weather maps. Not only does the model reduce the computing time to predict the spread, but the
+  model also aims to reproduce results as similar as possible compared to the original training 
+  result. To verify our idea and model structure, we utilize weather maps representing the weather 
+  conditions and volcanos around the Korean Peninsula.
 }
 
 \end{doublespacing}
