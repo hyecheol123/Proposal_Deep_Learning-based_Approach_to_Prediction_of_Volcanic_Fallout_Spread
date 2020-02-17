@@ -33,7 +33,9 @@
 \usepackage[labelfont=bf]{caption}    % For Figures' Caption
 \usepackage[numbers]{natbib}          % For Citation
 
-\title{Deep Learning-based Approach to Prediction of Volcanic Fallut Spread}
+\title{Deep Learning-based Approach \linebreak%
+       to Prediction of Volcanic Fallut Spread
+      }
 
 % The \author macro works with any number of authors. There are two commands
 % used to separate the names and addresses of multiple authors: \And and \AND.
@@ -65,14 +67,15 @@
 \begin{abstract}
   \fontsize{11pt}{11pt} \selectfont {
     The volcaninc fallout ash is one of the major causes making the volcanic eruption a fatal 
-    natural disaster. The spread of volcanic fallout is predicted by complex calculation which 
-    requires huge computing resources to make accurate prediction, and to get prediction result more
-    faster, the preivious researches focused on making lighter simulation model \cite{Searcy1998}, 
-    standardizing the variables used to simulate the spread \cite{Webley2009}, and increasing the 
-    efficiency of utilizing the simulated prediction and other information from different sources 
-    \cite{Sorokin2016}. Since the needs for the complicated calculation still present, our research 
-    suggests a faster solution on predicting the volcanic fallout spread utilizing the 
-    state-of-the-arts deep learning model.
+    natural disaster. The prediction on the spread of volcanic fallout can be made. However, the 
+    calculation is complicated and requires huge computing resources to make accurate prediction. 
+    Previously, researchers figured out several ways to predict it faster, but still it required to 
+    run the simulation. Therefore, we propose the use of deep learning to make a fast prediction of 
+    the ash spread. Specifically, we will use cGAN based architecture to predict ash spread patterns
+    from various input data including weather maps and eruption scale parameters. At the end of the 
+    project, we plan to present a paper at a conference as weel as open-source our trained model so 
+    that the whole society can be well prepared form the fatal disaster by getting the accurate 
+    prediction faster.
   }
 \end{abstract}
 
@@ -125,7 +128,7 @@
       \centering
       \includegraphics[width = \linewidth]{ModelStructure.png}
       \caption{\textbf{Overview of the Research Goal}
-                This research aims to make a deep-learning model which predicts volcaninc fallout 
+                This research aims to make a deep-learning model predicting volcaninc fallout 
                 spread while accepting the weather maps (both surface and upper air) and eruption 
                 scale parameters (Plume height, Plume shape, Volume of Emitted Ash, and the location
                 of mountain) as an input.
@@ -180,14 +183,14 @@
   to provide continuous images to represent the dispersion of volcaninc ash overtime, however, the 
   Isola et al.\cite{isola2016imagetoimage}'s model only needed to generate a still photograph.
 
-  To contruct the model, we will use the U-Net architecture, proposed by Ronneberger et al.
-  \cite{ronneberger2015unet}, for the convolutions to pass the information on the weather maps to 
-  the neural network. As the U-Net architecture has achieved promising results on several different
-  image tasks\cite{isola2016imagetoimage,james2018simtoreal}, we expect that this architecture will 
-  also work for our task. However, we still have to come up with a solution to pass information from
-  several different images and one numerical vector to our neural network when we train our model. 
-  After that, we are going to choose proper loss functions that make the best result on predicting 
-  the relationship between elements depicted on the weather maps to the spread of the ash.
+  To construct the model, we will use the U-Net architecture, proposed by Ronneberger et al.
+  \cite{ronneberger2015unet}, for the convolutions passing the information on the weather maps to 
+  the model. As the U-Net architecture has achieved promising results on several different
+  image tasks\cite{isola2016imagetoimage,james2018simtoreal}, we expect that the architecture will 
+  also work for our task. However, we still have to find a solution to pass information from several
+  different images and one numerical vector to our neural network when we train our model. After 
+  that, we are going to choose proper loss functions that make the best result on predicting the 
+  relationship between elements depicted on the weather maps to the spread of the ash.
 
   \paragraph{Model Analysis and Experiments}
   While we manuver over various loss functions, we are going to make various models utilizing 
