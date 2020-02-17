@@ -69,10 +69,10 @@
     requires huge computing resources to make accurate prediction, and to get prediction result more
     faster, the preivious researches focused on making lighter simulation model \cite{Searcy1998}, 
     standardizing the variables used to simulate the spread \cite{Webley2009}, and increasing the 
-    efficiency of utilizing the simulated prediction and other informatino from different sources 
-    \cite{Sorokin2016}. Still, the needs for the complicated calculation last, therefore, our 
-    research wants to suggest a faster solution on predicting the volcanic fallout spread utilizing 
-    the state-of-the-arts deep learning model.
+    efficiency of utilizing the simulated prediction and other information from different sources 
+    \cite{Sorokin2016}. Since the needs for the complicated calculation still present, our research 
+    suggests a faster solution on predicting the volcanic fallout spread utilizing the 
+    state-of-the-arts deep learning model.
   }
 \end{abstract}
 
@@ -84,36 +84,36 @@
   predicting the exact time and scale of volcanic eruption considered as a very difficult task, 
   which might never be accurate, according to 
   Einarsson~\cite[as cited in][para.7 \& 30]{fountain_2015}. 
-  Though there exist various ways that volcanic eruption to cause countless casualties and massive 
-  economic loss, according to Yun~\cite[p.274]{Yun_2013}, the fallout ash, the focus of this 
-  research, considered as one of the most significant by-products making deadly effects.
-  Including the respiratory damage of lives, threatening the safety and reliability of air 
-  transportation, and the collapse of structures caused by sedimentation of the ash, the fallout ash
-  causes various impairments in a wide range of areas~\cite[p.274-275]{Yun_2013}.
+  Although the volcanic eruptions cause countless casualties and massive economic loss in various 
+  ways, according to Yun~\cite[p.274]{Yun_2013}, the fallout ash is considered as one of the most 
+  significant by-products causing deadly effects. Resulting in the respiratory damage of lives, 
+  threatening the safety and reliability of air transportation, and the collapse of structures 
+  caused by sedimentation of the ash, the fallout ash causes various impairments in a wide range of 
+  areas~\cite[p.274-275]{Yun_2013}.
   
   To mitigate the hazardous effects caused by the fallout ash, it is important to properly predict 
-  the direction of ash spread and alert citizens who reside through the path of the ash dispersion. 
-  Historically, by using the Eulerian or the Lagrangian approach, according to Bonadonna et al. 
-  \cite[p.3-4]{Bonadonna2012}, scientists tried to make Volcanic Ash and Dispersion/Tracking 
-  Model (VATDM). These models usually focused on predicting the pathway of fallout ash dispersion 
-  and the amount of deposited ash while accepting limited variables~\cite[p.276]{Yun_2013}.
+  the direction of ash spread and alert citizens who in the affected area. Historically, according 
+  to Bonadonna et al. \cite[p.3-4]{Bonadonna2012}, scientists tried to make Volcanic Ash and 
+  Dispersion/Tracking Model (VATDM) by using the Eulerian or the Lagrangian approach. These models 
+  usually focused on predicting the pathway of fallout ash dispersion and the amount of deposited 
+  ash while accepting limited variables~\cite[p.276]{Yun_2013}.
 
-  However, these models’ predictability might be limited due to computing 
+  However, these models’ predictability might be limited due to the computing 
   performance~\cite[p.745-746]{Tanaka2022}, as the model needs to calculate the movement of all 
-  particles that want to predict. To be more specific, the number of particles to be tracked by 
-  VATDM and the calculation requirement have positive relationship; Scollo et al. 
+  particles that need to be predicted. To be more specific, there is a positive relationship between 
+  the number of particles to be tracked by VATDM and the calculation requirement. Scollo et al. 
   \cite{SCOLLO2011129} confirmed that it required up to hundreds of millions of particles to get 
   accurate simulation result, meaning that the simulation with small number of particles might not 
-  able to illustrate the region of disperse accurately.
+  be able to illustrate the region of disperse accurately.
 
   To make a faster prediction, researchers studied on making a lighter and faster prediction model
   \cite{Searcy1998}, standardizing the eruption parameters required to run the model 
-  (\cite[p.7]{Webley2009}), and figuring out the way to store and retrieve different kinds of data
-  (satellite and prediction from the mathematical model), which needed when deciding the final 
-  prediction result, more efficiently~\cite{Sorokin2016}. Though the advance of the models and 
-  simulated results' utilization efficiency has been improved with the effort of numerous scholars, 
-  still the needs of the calculation process last, which yet limiting the ability of prediction to 
-  the computing power.
+  \cite[p.7]{Webley2009}, and figuring out the way to store and retrieve different kinds of data
+  (satellite and prediction from the mathematical model), needed when deciding the final 
+  prediction result more efficiently~\cite{Sorokin2016}. Though the models themselves and 
+  utilization efficiency of simulated results have been improved with the effort of numerous 
+  scholars, still the needs for the calculation process remain, which yet limit the ability of 
+  prediction by the computing power.
 
   In this research, we are going to suggest a faster way to get the prediction on the pathway and 
   area that might be affected by volcanic fallout ash: deep learning. By utilizing the
