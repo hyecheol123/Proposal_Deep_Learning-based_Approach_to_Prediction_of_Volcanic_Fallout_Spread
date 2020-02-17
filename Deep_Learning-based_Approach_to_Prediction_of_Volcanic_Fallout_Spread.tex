@@ -127,11 +127,17 @@
   }
 
   In this research, we are going to suggest a faster way to get the prediction on the pathway and 
-  area that might be affected by volcanic fallout ash: Image-to-Image Translation. By utilizing the
-  state-of-the-arts deep neural network, our goal includes verifying whether conditional Generative 
-  Adversarial Network (cGAN) based deep neural network can extract the relationship between the flow
-  of air (represented by surface and upper air weather maps) and the spread of fallout ash. 
-  (See \textbf{Figure \ref{fig1}} for the model's structure)
+  area that might be affected by volcanic fallout ash: deep learning. By utilizing the
+  state-of-the-arts deep learning architectures, our goal includes verifying whether deep learning 
+  can predict the spread of fallout ash. (See \textbf{Figure \ref{fig1}} for the model's structure)
+
+  To be more specific, we are going to construct a model based on the conditional Generative 
+  Adversarial Network (cGAN), proposed by Isola et al. \cite{isola2016imagetoimage},which focused on
+  translating one image to the other type of image (Image-to-Image Translation). Comparing to the 
+  previous work \cite{isola2016imagetoimage}, while the previous architecture only got an image as 
+  an input and produced one output image, our deep learning model should get several images and need
+  to produce continous images to represent the direction and speed of ash spread. The details 
+  regarding the model structure are writen below (Method - Model structure).
 }
 
 \section{Methods}  % TODO Review Requested
